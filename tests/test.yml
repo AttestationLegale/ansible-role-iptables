@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  vars:
+    - iptables_filter_rules:
+      - comment: "Open port 9123"
+        rules:
+          - "-A INPUT -p tcp -m state --state NEW -m tcp --dport 9123 -j ACCEPT"
+
+  roles:
+    - ansible-role-iptables
