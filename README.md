@@ -1,6 +1,6 @@
 # Ansible Role: Iptables
 
-[![Build Status](https://travis-ci.org/cguillerminet/ansible-role-iptables.svg?branch=master)](https://travis-ci.org/cguillerminet/ansible-role-iptables)
+[![Build Status](https://travis-ci.org/AttestationLegale/ansible-role-iptables.svg?branch=master)](https://travis-ci.org/AttestationLegale/ansible-role-iptables)
 
 Installs a simple iptables-based firewall for RHEL/CentOS or Debian/Ubunty systems. It uses iptables-save format to define rules.
 
