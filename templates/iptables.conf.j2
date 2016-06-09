@@ -5,9 +5,23 @@
 :FORWARD {{ iptables_mangle_forward_policy|string }} [0:0]
 :OUTPUT {{ iptables_mangle_output_policy|string }} [0:0]
 :POSTROUTING {{ iptables_mangle_postrouting_policy|string }} [0:0]
-{% for rule in iptables_mangle_rules %}
-# {{ rule.comment }}
-{{ rule.rule }}
+{% for mangle_rule in iptables_mangle_rules %}
+# {{ mangle_rule.comment }}
+{% for rule in mangle_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for mangle_rule in iptables_mangle_group_rules %}
+# {{ mangle_rule.comment }}
+{% for rule in mangle_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for mangle_rule in iptables_mangle_host_rules %}
+# {{ mangle_rule.comment }}
+{% for rule in mangle_rule.rules %}
+{{ rule }}
+{% endfor %}
 {% endfor %}
 COMMIT
 *nat
@@ -15,9 +29,23 @@ COMMIT
 :INPUT {{ iptables_nat_input_policy|string }} [0:0]
 :OUTPUT {{ iptables_nat_output_policy|string }} [0:0]
 :POSTROUTING {{ iptables_nat_postrouting_policy|string }} [0:0]
-{% for rule in iptables_nat_rules %}
-# {{ rule.comment }}
-{{ rule.rule }}
+{% for nat_rule in iptables_nat_rules %}
+# {{ nat_rule.comment }}
+{% for rule in nat_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for nat_rule in iptables_nat_group_rules %}
+# {{ nat_rule.comment }}
+{% for rule in nat_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for nat_rule in iptables_nat_host_rules %}
+# {{ nat_rule.comment }}
+{% for rule in nat_rule.rules %}
+{{ rule }}
+{% endfor %}
 {% endfor %}
 COMMIT
 *filter
@@ -39,6 +67,18 @@ COMMIT
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 {% endif %}
 {% for filter_rule in iptables_filter_rules %}
+# {{ filter_rule.comment }}
+{% for rule in filter_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for filter_rule in iptables_filter_group_rules %}
+# {{ filter_rule.comment }}
+{% for rule in filter_rule.rules %}
+{{ rule }}
+{% endfor %}
+{% endfor %}
+{% for filter_rule in iptables_filter_host_rules %}
 # {{ filter_rule.comment }}
 {% for rule in filter_rule.rules %}
 {{ rule }}
