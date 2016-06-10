@@ -13,11 +13,3 @@
   template: src=iptables.conf.j2 dest={{ iptables_conf }} owner={{ ipatbles_conf_user }} group={{ ipatbles_conf_group }} mode={{ ipatbles_conf_mode|string }}
   notify: load iptables rules
   tags: [configuration,iptables]
-
-- name: Set rp_filter default setting (sysctl)
-  sysctl: name=net.ipv4.conf.default.rp_filter value={{ iptables_rp_filter_default }} state=present
-  tags: [configuration,iptables]
-
-- name: Set rp_filter all setting (sysctl)
-  sysctl: name=net.ipv4.conf.all.rp_filter value={{ iptables_rp_filter_all }} state=present
-  tags: [configuration,iptables]
