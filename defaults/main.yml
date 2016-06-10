@@ -1,8 +1,5 @@
 ---
 
-iptables_rp_filter_default: "0"
-iptables_rp_filter_all: "0"
-
 iptables_conf: "/etc/iptables.conf"
 ipatbles_conf_user: "root"
 ipatbles_conf_group: "root"
